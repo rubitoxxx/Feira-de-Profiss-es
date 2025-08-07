@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking de RubixCoins</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 style="color:#05d49d; text-align:center; margin-bottom:1.5rem;">🏆 Ranking de RubixCoins 🏆</h1>
+        <p id="loadingMessage">Carregando ranking...</p>
+        <p id="errorMessage" style="display: none;"></p>
+        <ul id="rankingList" style="list-style:none; padding:0; margin:0;"></ul>
+        <button class="button" onclick="window.location.href='mural.html'">Voltar ao Mural</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabaseClient.js"></script>
+    <script src="utils.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const rankingList = document.getElementById('rankingList');
+            const loadingMessage = document.getElementById('loadingMessage');
+            const errorMessage = document.getElementById('errorMessage');
+
+            if (!window._supabase) {
+                errorMessage.textContent = 'Erro: Supabase não inicializado. Verifique utils.js';
+                errorMessage.style.display = 'block';
+                loadingMessage.style.display = 'none';
+                return;
+            }
+
+            try {
+                const { data: profiles, error } = await window._supabase
+                    .from('profiles')
+                    .select('username, rubix_coins')
+                    .order('rubix_coins', { ascending: false })
+                    .limit(100);
+
+                if (error) {
+                    errorMessage.textContent = 'Erro ao carregar o ranking. Tente novamente mais tarde.';
+                    errorMessage.style.display = 'block';
+                    loadingMessage.style.display = 'none';
+                    return;
+                }
+
+                loadingMessage.style.display = 'none';
+
+                if (profiles.length === 0) {
+                    rankingList.innerHTML = '<li>Nenhum usuário no ranking ainda. Jogue para ganhar moedas!</li>';
+                } else {
+                    profiles.forEach((profile, index) => {
+                        let medal = '';
+                        if (index === 0) medal = '🥇 ';
+                        else if (index === 1) medal = '🥈 ';
+                        else if (index === 2) medal = '🥉 ';
+                        rankingList.innerHTML += `
+                            <li style="
+                                background:${index===0?'#ffe066':index===1?'#e0e0e0':index===2?'#cd7f32':'#fff'};
+                                color:${index<3?'#222':'#080808'};
+                                font-weight:${index<3?'bold':'normal'};
+                                border-radius:8px;
+                                margin-bottom:10px;
+                                padding:1rem 1.5rem;
+                                display:flex;
+                                justify-content:space-between;
+                                align-items:center;
+                                box-shadow:0 2px 8px rgba(0,0,0,0.08);
+                                border:1px solid #ccc;
+                            ">
+                                <span>${medal}${index + 1}º</span>
+                                <span style="flex:1; margin-left:1rem;">${profile.username || 'Usuário Anônimo'}</span>
+                                <span style="color:#05d49d; font-weight:bold;">${profile.rubix_coins || 0} 💎</span>
+                            </li>
+                        `;
+                    });
+                }
+            } catch (err) {
+                errorMessage.textContent = 'Ocorreu um erro inesperado ao carregar o ranking.';
+                errorMessage.style.display = 'block';
+                loadingMessage.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

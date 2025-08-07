@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - feira das profissões</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>FEIRA DE PROFISSÕES</h2>
+        <p>Acesse sua conta para continuar</p>
+        <div class="input-icon">
+        <span class="icon">📱</span>
+        <input type="text" id="telefone" placeholder="Telefone" name="telefone" required>
+    </div>
+        <div class="input-icon">
+            <span class="icon">🔒</span>
+            <input type="password" id="password" placeholder="Senha" required>
+        </div>
+
+        <button id="login-button">Entrar</button>
+        
+        <p id="mensagemErro" class="error-message"></p>
+        <a href="tela de cadastro.html">Não tem uma conta? Cadastre-se</a>
+    </div>
+    <script>
+function mascaraTelefone(input) {
+    let value = input.value.replace(/\D/g, "");
+    if (value.length > 11) value = value.slice(0, 11);
+    if (value.length > 0) value = "(" + value;
+    if (value.length > 3) value = value.slice(0, 3) + ") " + value.slice(3);
+    if (value.length > 10) value = value.slice(0, 10) + "-" + value.slice(10);
+    input.value = value;
+}
+
+document.getElementById('telefone').addEventListener('input', function() {
+    mascaraTelefone(this);
+});
+</script>
+</body>
+</html>

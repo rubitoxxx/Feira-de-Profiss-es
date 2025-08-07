@@ -1,0 +1,389 @@
+/* Reset mais robusto (ou use um como o Normalize.css) */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary-color: #05d49d45; 
+    --secondary-color: #dce7e7e3; 
+    --background-light: #e7f0edda; 
+    --background-dark: #01060b62; 
+    --text-dark: #080808;
+    --text-light: #000000;
+    --border-color: #000102;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --font-family-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+  font-family: var(--font-family-main);
+  background-image: url("./download.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5 {
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+/* Container e Cards */
+.container,
+.login-container,
+.perfil-container,
+.post {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: rgba(214, 212, 212, 0.945);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efeito de hover para elementos interativos */
+.container:hover,
+.card:hover,
+.post:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Links */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+a:hover {
+    color: #080808;
+    text-decoration: underline;
+}
+
+/* Botões de postagem */
+button, .btn, .button {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #07f3c4;
+    color: #030303;
+}
+
+button:hover, .btn:hover, .button:hover {
+    background-color: #06000097;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);s
+}
+
+.button-secondary {
+    background-color: var(--secondary-color);
+    color: #020200;
+}
+
+.button-secondary:hover {
+    background-color: #0be9b1;
+    color: var(--text-dark);
+}
+
+/* Formulários */
+input[type="text"], input[type="telefone"], input[type="password"], textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(202, 208, 214, 0.174);
+}
+
+/* Estilos para o Mural */
+.header-mural {
+    background: linear-gradient(135deg, #00000023), #00000018;
+    color: rgb(11, 12, 12);
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.header-mural h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+}
+
+.header-mural h5 {
+    color: rgba(10, 9, 9, 0.9);
+}
+
+.header-mural__user-info {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+.coin-count {
+    display: inline-flex;
+    align-items: center;
+    background-color: rgba(6, 236, 198, 0.669);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.coin-icon {
+    margin-right: 8px;
+    color: rgb(244, 228, 4);
+}
+
+.header-mural__nav-button {
+    background-color: rgba(5, 240, 185, 0.719);
+    color: rgb(0, 10, 8);
+    border: 1px solid rgba(12, 0, 0, 0.975);
+    margin: 0.5rem 0;
+    width: 100%;
+}
+
+.header-mural__nav-button:hover {
+    background-color: rgba(239, 232, 232, 0.5);
+    border-color: rgb(0, 0, 0);
+}
+
+/* Postagem */
+.post-form {
+    display: flex;
+    gap: 1.5rem;
+    flex-direction: column;
+    background-color: rgba(232, 238, 238, 0.58);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    margin-bottom: 2rem;
+}
+.post-form__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.post-form__header img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary-color);
+}
+.post-form__header h3 {
+    color: var(--text-dark);      
+    background-color: #11040194;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    margin-bottom: 2rem;
+}
+
+.post-form__textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.post-form__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.post-form__action-icon {
+    font-size: 1.5rem;
+    color: #0e0d0d;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.post-form__action-icon:hover {
+    color: var(--primary-color);
+}
+
+.post {
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    background-color: #fff;
+}
+
+.post__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 1rem;
+    object-fit: cover;
+    border: 2px solid var(--primary-color);
+}
+
+/* Estilos de Comentários */
+.comments-section {
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1rem;
+}
+
+.comment-input {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.comment-input__textarea {
+    flex-grow: 1;
+    height: 40px;
+}
+
+.comments-section__item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Efeito de fundo para pggame.html */
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("./download.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    color: var(--text-dark);
+    line-height: 1.6;
+    z-index: -2;
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.floating-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    background-color: rgba(218, 7, 7, 0.879);
+    border-radius: 50%;
+    animation: float 20s linear infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Estilos adicionais para telas de login e cadastro */
+.login-container h2 {
+    text-align: center;
+    color: #000000;
+}
+
+.login-container {
+    max-width: 400px; /* Reduza o valor aqui */
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: rgb(236, 230, 230);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgb(10, 10, 10);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.perfil-nome input {
+    width: 300px; /* Define a largura do campo de entrada */
+    display: block; /* Garante que o campo de entrada ocupe sua própria linha */
+    margin-left: auto; /* Centraliza o campo horizontalmente */
+    margin-right: auto;
+}
+/* Para centralizar textos e botões */
+.perfil-container h2,
+.perfil-container button {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block; /* Garante que os botões ocupem sua própria linha */
+}
+/* Adicione ao seu style.css */
+.input-icon {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+}
+.input-icon .icon {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+    color: #05d49d;
+}
+.input-icon input {
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    width: 100%;
+    background: transparent;
+    padding: 0;
+}

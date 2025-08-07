@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Mural Rubix</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>CRIAR CONTA</h2>
+        <div class="input-icon">
+    <span class="icon">📱</span>
+    <input type="text" id="telefone" placeholder="Telefone" required>
+</div>
+<div class="input-icon">
+    <span class="icon">🔒</span>
+    <input type="password" id="password" placeholder="Crie uma senha forte">
+</div>
+<button onclick="cadastrar()">Cadastrar</button>
+<p id="mensagemStatus"></p>
+<a href="index.html">Já tem uma conta? Faça login</a>
+</div>
+<script>
+function mascaraTelefone(input) {
+    let value = input.value.replace(/\D/g, "");
+    if (value.length > 11) value = value.slice(0, 11);
+    if (value.length > 0) value = "(" + value;
+    if (value.length > 3) value = value.slice(0, 3) + ") " + value.slice(3);
+    if (value.length > 10) value = value.slice(0, 10) + "-" + value.slice(10);
+    input.value = value;
+}
+document.getElementById('telefone').addEventListener('input', function() {
+    mascaraTelefone(this);
+});
+</script>
+</body>
+</html>
